@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "d79f3bc1-b455-4c65-85b2-f19203f90c67"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -31,12 +34,13 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/devextreme/dist/css/dx.light.css",
               "src/assets/scss/style.scss",
               "src/styles.scss",
               "node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [
-              "node_modules/leaflet/dist/tomato.js"
+              "node_modules/leaflet/dist/leaflet.js"
             ]
           },
           "configurations": {
