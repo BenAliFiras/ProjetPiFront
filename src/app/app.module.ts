@@ -27,6 +27,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { AddPostComponent } from './add-post/add-post.component';
 import { MapsAPILoader } from '@agm/core';
 import { AgmCoreModule } from '@agm/core';
+import { DetailsPostComponent } from './details-post/details-post.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -43,6 +44,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NavigationComponent,
     SidebarComponent,
     AddPostComponent,
+    DetailsPostComponent,
   ],
   imports: [
     CommonModule,

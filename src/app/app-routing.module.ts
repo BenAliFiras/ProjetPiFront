@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FullComponent } from './layouts/full/full.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { DetailsPostComponent } from './details-post/details-post.component';
 
 export const Approutes: Routes = [
   {
@@ -23,6 +24,7 @@ export const Approutes: Routes = [
         loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
       },
       { path: 'add-post', component:AddPostComponent},
+      { path: 'post/details', component: DetailsPostComponent }
     ]
   },
   {

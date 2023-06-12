@@ -11,6 +11,12 @@
                 <span class="hide-menu">{{sidebarnavItem.title}}</span>
             </a>
         </li>
+        <li class="sidebar-item" [class.active]="showMenu === 'Detail Post'">
+          <a class="sidebar-link waves-effect waves-dark" [routerLink]="['/post/details']">
+            <i class="ti-info-alt"></i>
+            <span class="hide-menu">Detail Post</span>
+          </a>
+        </li>
         <li class="text-center p-3 upgrade-btn">
             <a href="https://www.wrappixel.com/templates/elite-angular-admin/" class="btn d-block w-100 btn-danger">Upgrade to Pro</a>
         </li>
