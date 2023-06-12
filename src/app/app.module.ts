@@ -30,6 +30,9 @@ import { AgmCoreModule } from '@agm/core';
 
 import { DxSchedulerModule } from 'devextreme-angular';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { IconsComponent } from './icons/icons.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -47,6 +50,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SidebarComponent,
     AddPostComponent,
     ReservationPageComponent,
+    LoginComponent,
+    RegisterComponent,
+    IconsComponent,
     
   ],
   imports: [

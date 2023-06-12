@@ -4,9 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { FullComponent } from './layouts/full/full.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 export const Approutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+
+
   {
     path: '',
     component: FullComponent,

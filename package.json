@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^13.0.1",
     "@angular/platform-server": "^13.0.1",
     "@angular/router": "^13.0.1",
+    "@fortawesome/fontawesome-free": "^6.4.0",
     "@ng-bootstrap/ng-bootstrap": "12.0.0-beta.4",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
@@ -50,7 +51,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^13.0.2",
-    "@angular/cli": "^13.0.2",
+    "@angular/cli": "^13.3.11",
     "@angular/compiler-cli": "^13.0.1",
     "@angular/language-service": "^13.0.1",
     "@types/c3": "^0.6.4",
