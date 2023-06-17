@@ -1,7 +1,15 @@
-<form (submit)="submitForm()">
+<form #postForm="ngForm" (submit)="submitForm()">
   <div class="form-group">
-    <label for="link_piecejointe">Lien de la pièce jointe</label>
-    <input type="text" class="form-control" id="link_piecejointe" [(ngModel)]="post.link_piecejointe" name="link_piecejointe" required>
+    <label for="linkPieceJointe">Lien de la pièce jointe:</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="linkPieceJointe" name="linkPieceJointe" [(ngModel)]="post.linkPieceJointe">
+      <div class="input-group-append">
+        <label class="btn btn-primary">
+          Choisir un fichier
+          <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+        </label>
+      </div>
+    </div>
   </div>
 
   <div class="form-group">
@@ -24,5 +32,5 @@
     <input type="date" class="form-control" id="date" [(ngModel)]="post.date" name="date" required>
   </div>
 
-  <button type="submit" class="btn btn-primary">Ajouter</button>
+  <button [disabled]="postForm.invalid" type="submit" class="btn btn-primary">Ajouter</button>
 </form>

@@ -45,7 +45,7 @@ export const ComponentsRoutes: Routes = [
 			{
 				path: 'buttons',
 				component: ButtonsComponent
-			}
+			},
 		]
 	}
 ];

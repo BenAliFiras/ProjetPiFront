@@ -7,7 +7,7 @@ import {
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
+import {  Routes, RouterModule } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -25,9 +25,15 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { AddPostComponent } from './add-post/add-post.component';
-import { MapsAPILoader } from '@agm/core';
-import { AgmCoreModule } from '@agm/core';
-import { ModalReclamationComponent } from './modal-reclamation/modal-reclamation.component';
+
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import { DetailsPostComponent } from './details-post/details-post.component';
+
+import { DxSchedulerModule } from 'devextreme-angular';
+import { ReservationPageComponent } from './reservation-page/reservation-page.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { IconsComponent } from './icons/icons.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -44,13 +50,18 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NavigationComponent,
     SidebarComponent,
     AddPostComponent,
-    ModalReclamationComponent,
+    DetailsPostComponent,
+    ReservationPageComponent,
+    LoginComponent,
+    RegisterComponent,
+    IconsComponent,
   ],
   imports: [
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    DxSchedulerModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
