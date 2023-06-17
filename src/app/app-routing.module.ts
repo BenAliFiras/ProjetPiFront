@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FullComponent } from './layouts/full/full.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { ModalReclamationComponent } from './modal-reclamation/modal-reclamation.component';
 
 export const Approutes: Routes = [
   {
@@ -13,6 +14,9 @@ export const Approutes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+      {
+        path: 'dashboard/reclamations', component:ModalReclamationComponent
       },
       {
         path: 'about',
