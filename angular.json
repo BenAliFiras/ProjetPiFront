@@ -37,8 +37,6 @@
               "src/assets/scss/style.scss",
               "src/styles.scss",
               "node_modules/leaflet/dist/leaflet.css"
-              
-             
             ],
             "scripts": [
               "node_modules/leaflet/dist/leaflet.js"

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { FullComponent } from './layouts/full/full.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { DetailsPostComponent } from './details-post/details-post.component';
@@ -10,7 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-
+import { ModalReclamationComponent } from './modal-reclamation/modal-reclamation.component';
 export const Approutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -27,6 +26,9 @@ export const Approutes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+      {
+        path: 'dashboard/reclamations', component:ModalReclamationComponent
       },
       {
         path: 'about',
