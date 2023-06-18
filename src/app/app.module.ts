@@ -34,6 +34,9 @@ import { ReservationPageComponent } from './reservation-page/reservation-page.co
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { IconsComponent } from './icons/icons.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -55,6 +58,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LoginComponent,
     RegisterComponent,
     IconsComponent,
+    UserProfileComponent,
+    UsersListComponent,
+    ResetpasswordComponent,
   ],
   imports: [
     CommonModule,
