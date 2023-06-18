@@ -7,6 +7,7 @@ import { DetailsPostComponent } from './details-post/details-post.component';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ModalReclamationComponent } from './modal-reclamation/modal-reclamation.component';
 
 export const Approutes: Routes = [
   { path: 'login', component: LoginComponent },
