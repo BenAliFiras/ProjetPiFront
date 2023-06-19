@@ -12,6 +12,7 @@ import * as L from 'leaflet';
 export class AddPostComponent implements OnInit {
   post: any;
   private adresse!: L.Map;
+  selectedImage: string = '';
   @ViewChild('addressInput', { static: true }) mapContainer!: ElementRef;
   constructor(private http: HttpClient) {
     this.post = {
@@ -33,6 +34,42 @@ export class AddPostComponent implements OnInit {
   placeMarkerOnMap(lat: number, lng: number): void {
     const marker = L.marker([lat, lng]).addTo(this.adresse);
     console.log(marker);
+  }
+
+  onFileSelected(event: any) {
+    const file = File= event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e: any) => {
+      this.selectedImage = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  uploadImage(file: File, fileName: string) {
+    const formData = new FormData();
+    formData.append('image', file, fileName);
+
+    // Effectuer l'appel HTTP pour uploader l'image
+    // Utilisez votre méthode d'envoi de données au backend (par exemple, HttpClient)
+    // Assurez-vous de spécifier la bonne URL et la méthode appropriée (POST, PUT, etc.)
+
+    // Exemple avec HttpClient :
+    this.http.post<any>('http://localhost:9090/post', formData).subscribe(
+      response => {
+        // Récupérer le lien de l'image depuis la réponse du backend
+        const imageUrl = response.image_url;
+
+        // Stocker le lien dans la variable selectedImage
+        this.selectedImage = imageUrl;
+
+        // Afficher une confirmation ou effectuer d'autres actions si nécessaire
+      },
+      error => {
+        // Gérer les erreurs lors de l'upload de l'image
+      }
+    );
   }
 
   addPost() {

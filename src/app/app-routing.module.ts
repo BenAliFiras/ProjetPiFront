@@ -1,12 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { FullComponent } from './layouts/full/full.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { DetailsPostComponent } from './details-post/details-post.component';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
-
-
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ModalReclamationComponent } from './modal-reclamation/modal-reclamation.component';
 export const Approutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'reset-password/:token', component: ResetpasswordComponent },
+
+
+
+
   {
     path: '',
     component: FullComponent,
@@ -17,6 +28,9 @@ export const Approutes: Routes = [
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
+        path: 'dashboard/reclamations', component:ModalReclamationComponent
+      },
+      {
         path: 'about',
         loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
       },
@@ -25,7 +39,13 @@ export const Approutes: Routes = [
         loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
       },
       { path: 'add-post', component:AddPostComponent},
+
+      { path: 'post/details', component: DetailsPostComponent },
+
       { path: 'reservation', component:ReservationPageComponent},
+      { path: 'users', component: UsersListComponent },
+      { path: 'profile', component: UserProfileComponent },
+
     ]
   },
   {
