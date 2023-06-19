@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,  Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -15,15 +15,19 @@ export class DetailsPostComponent implements OnInit {
   postDetails: boolean[] = [];
   postLikes: number[] = [];
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {
-    this.postId = 0;
+  constructor(private http: HttpClient, private router:Router) {
+    //this.postId = 0;
     this.posts = [];
   }
 
   ngOnInit(): void {
         this.getPostDetails();
+
   }
 
+  getupdate(){
+    this.router.navigate(['post/update/:postId']);
+  }
   getPostDetails() {
     const url = 'http://localhost:9090/post'; // Remplacez par l'URL de votre endpoint backend
 

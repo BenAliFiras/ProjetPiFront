@@ -5,12 +5,14 @@
       <h5 class="card-title">{{ post.user.prenom }}</h5>
       <p class="card-text">{{ post.description }}</p>
       <a href="javascript:void(0)" class="btn btn-primary" (click)="toggleDetails(i)">Read More</a>
+      <a class="btn btn-primary" (click)="getupdate()">Modifier</a>
       <p>Likes: {{ postLikes[i] }}</p>
       <button class="btn btn-primary" (click)="toggleLike(i)">J'aime</button>
     </div>
     <div *ngIf="postDetails[i]">
       <!-- Afficher les détails du post ici -->
       <p>Adresse: {{ post.adresse }}</p>
+      <p>Link: {{ post.link }}</p>
       <p>Date: {{ post.date }}</p>*
       <h6>Commentaires:</h6>
         <div *ngFor="let comment of postComments[i]">

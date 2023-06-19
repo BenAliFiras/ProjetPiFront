@@ -7,6 +7,7 @@ import { DetailsPostComponent } from './details-post/details-post.component';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UpdatePostComponent } from './update-post/update-post.component';
 
 export const Approutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -33,6 +34,8 @@ export const Approutes: Routes = [
       { path: 'add-post', component:AddPostComponent},
 
       { path: 'post/details', component: DetailsPostComponent },
+
+      { path: "post/update/:postId", component: UpdatePostComponent },
 
       { path: 'reservation', component:ReservationPageComponent},
     ]
