@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+
 
 export class events {
   text!: string;
@@ -17,14 +19,13 @@ export class events {
 export class ReservationPageComponent implements OnInit {
   appointmentsData: any;
    total: any;
+   errorMessage!: string;
 
-
-   currentDate: Date = new Date(2023, 3, 29);
+   currentDate: Date = new Date();
 
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
     this.appointmentsData = this.getAppointments(1);
-    // this.total = this.getAppointments(1);
   }
   getAppointments(id: any): void {
     this.http.get<events[]>("http://localhost:9090/reservation/"+id)
@@ -47,16 +48,63 @@ export class ReservationPageComponent implements OnInit {
         this.appointmentsData = renamedData;
       });
   }
+  addReservation(){
+    this.http.post("http://localhost:9090/evenement/addAndAssign/1/1", {}).subscribe(
+      data => {
+        // La réservation a été effectuée avec succès
+        Swal.fire({
+          icon: 'success',
+          title: 'Succès',
+          text: 'La réservation a été effectuée avec succès.'
+        });
+        this.total = this.total + 1;
+      },
+    (error: HttpErrorResponse) => {
+    
+      if (error.error instanceof ErrorEvent) {
+        this.errorMessage = 'Une erreur s\'est produite lors de la réservation.';
+      } else {
+        // Afficher le corps de la réponse de la requête qui a échoué
+        this.errorMessage = error.error.error;
+        
+      }
+       // Afficher la boîte de dialogue d'erreur
+       Swal.fire({
+        icon: 'error',
+        title: 'Erreur',
+        text: this.errorMessage
+      });
+    }
+    );
 
- 
-  deleteEventaa(id: any){
-    const url = `http://localhost:9090/reservation/archiverReservation/${id}`;
-    return this.http.post(url,{});
   }
-  
   deleteEvent(event: any) {
     let eventId = event.appointmentData.idReservation; // Récupérer l'identifiant de l'événement
-    // Supprimer l'événement correspondant à partir de votre base de données en utilisant l'identifiant de l'événement
-  this.deleteEventaa(eventId).subscribe((response: any) => {});
+    const url = `http://localhost:9090/reservation/archiverReservation/${eventId}`;
+    Swal.fire({
+      title: 'Êtes-vous sûr(e) de vouloir supprimer cet événement?',
+      text: "Cette action est irréversible!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Supprimer',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // L'utilisateur a cliqué sur le bouton "Supprimer"
+        // Supprimer l'événement correspondant à partir de votre base de données en utilisant l'identifiant de l'événement
+        this.http.post(url, {}).subscribe((response: any) => {
+          // Réaliser des actions supplémentaires si nécessaire
+          this.total = this.total - 1;
+        });
+  
+        // Afficher une boîte de dialogue de confirmation de suppression
+        Swal.fire(
+          'Supprimé!',
+          'La réservation a été supprimé avec succès.',
+          'success'
+        );  }
+      });
 }
 }
