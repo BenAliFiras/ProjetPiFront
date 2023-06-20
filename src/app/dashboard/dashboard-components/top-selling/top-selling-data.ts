@@ -4,7 +4,7 @@ export interface Product {
     gmail: string,
     productName: string,
     status: string,
-    weeks: number,
+    daterec: Date,
     budget: string
 }
 
@@ -16,7 +16,7 @@ export const TopSelling: Product[] = [
         gmail: 'Ibrahim.Barkallah@gmail.com',
         productName: 'Reclamation pour Eya Trabelsi',
         status: 'danger',
-        weeks: 13,
+        daterec: new Date(2022, 7, 16),
         budget: '95K'
     },
     {
@@ -25,7 +25,7 @@ export const TopSelling: Product[] = [
         gmail: 'hgover@gmail.com',
         productName: 'Landing pro React',
         status: 'info',
-        weeks: 35,
+        daterec: new Date(2023, 7, 16),
         budget: '95K'
     },
     {
@@ -34,7 +34,7 @@ export const TopSelling: Product[] = [
         gmail: 'hgover@gmail.com',
         productName: 'Elite React	',
         status: 'warning',
-        weeks: 35,
+        daterec: new Date(2022, 7, 19),
         budget: '95K'
     },
     {
@@ -43,7 +43,7 @@ export const TopSelling: Product[] = [
         gmail: 'hgover@gmail.com',
         productName: 'Ample React',
         status: 'success',
-        weeks: 35,
+        daterec: new Date(2022, 7, 23),
         budget: '95K'
     },
 
