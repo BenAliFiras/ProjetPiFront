@@ -37,6 +37,8 @@ import { IconsComponent } from './icons/icons.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ModalReclamationComponent } from './modal-reclamation/modal-reclamation.component';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -61,6 +63,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     UserProfileComponent,
     UsersListComponent,
     ResetpasswordComponent,
+    ModalReclamationComponent
   ],
   imports: [
     CommonModule,
@@ -70,7 +73,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DxSchedulerModule,
     ReactiveFormsModule,
     HttpClientModule,
-
     NgbModule,
     RouterModule.forRoot(Approutes, { useHash: false, relativeLinkResolution: 'legacy' }),
     PerfectScrollbarModule,

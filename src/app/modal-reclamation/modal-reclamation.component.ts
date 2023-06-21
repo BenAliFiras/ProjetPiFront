@@ -11,15 +11,16 @@ import { Reclamation } from 'src/app/models/Reclamation';
 })
 export class ModalReclamationComponent implements OnInit {
 
-  claim: Reclamation
+  claim: Reclamation;
   constructor() {  this.claim = history.state.claim;}
 
   
   ngOnInit(): void {
   }
 
+
   changeStatus(status: boolean) {
-    this.claim.status = status;
+    this.claim.status = status; // Update the claim status
   }
 
 }
