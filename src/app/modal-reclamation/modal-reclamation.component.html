@@ -83,19 +83,13 @@
 			<div class="card-body">
 				<p><b>Object :</b>  {{ claim.object }}</p>
 				<p><b>Description :</b> {{ claim.description }}</p>
-				<div class="status">
 					<p><b>Date :</b>  {{ claim.daterec | date:'yyyy-MM-dd' }}</p>
 					<div class="status2">
-						<select>
-							<option [value]="'open'" [selected]="claim.status">
-							  Open
-							</option>
-							<option [value]="'close'" [selected]="!claim.status">
-							  Close
-							</option>
-						  </select>
-					  </div>
-				  </div>
+						<button class="btn" [class.green]="claim.status" [class.red]="!claim.status" (click)="toggleStatus()">
+							{{ claim.status ? 'OPEN' : 'CLOSE' }}
+						</button>
+					</div>
+
 			</div>
 		</div>
 	</div>

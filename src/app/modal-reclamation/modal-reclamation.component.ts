@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
 import { Reclamation } from 'src/app/models/Reclamation';
 
 
@@ -12,15 +14,22 @@ import { Reclamation } from 'src/app/models/Reclamation';
 export class ModalReclamationComponent implements OnInit {
 
   claim: Reclamation;
-  constructor() {  this.claim = history.state.claim;}
+  constructor(private http:HttpClient,private router:Router,) {  this.claim = history.state.claim;}
 
   
   ngOnInit(): void {
   }
 
-
-  changeStatus(status: boolean) {
-    this.claim.status = status; // Update the claim status
-  }
-
+  toggleStatus(): void {
+    this.claim.status = !this.claim.status;
+    this.http.get(`http://localhost:9091/reclamation/setStatus/${this.claim.idReclamation}/${this.claim.status}`).subscribe(
+      () => {
+        
+        this.router.navigate(['/dashboard']);
+      },
+      (error) => {
+        console.error('Failed to update reclamation status:', error);
+      }
+    )}
+ 
 }
