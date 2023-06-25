@@ -61,6 +61,13 @@
 		.emoji {
     font-family: "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Apple Color Emoji", "EmojiOne", "Android Emoji", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
+  .size-thead {
+  font-size: 15px;
+}
+.add-line {
+	border-bottom: 1px solid black;
+	width: 100%;
+}
 
 	</style>
 </head>
@@ -70,6 +77,13 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="user1">
+					<table 	class="add-line">
+					<thead >
+						<tr>
+							<th class="size-thead">Claimed User : </th>
+						</tr>
+					</thead>
+				</table>
 					<img src="assets/images/users/userperso.jpg" alt="User 1">
 					{{ claim.userrec.nom }} {{ claim.userrec.prenom }}
 				</div>
@@ -78,6 +92,13 @@
 					<i class="fas fa-circle" [class.text-success]="claim.status" [class.text-danger]="!claim.status"></i> Status
 				  </div>
 				<div class="user2">
+					<table class="add-line">
+					<thead>
+						<tr>
+							<th class="size-thead">By</th>
+						</tr>
+					</thead>
+					</table>
 					<img src="assets/images/users/userperso.jpg" alt="User 2">
 					{{ claim.userarec.nom }} {{ claim.userarec.prenom }}
 	
