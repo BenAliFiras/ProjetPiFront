@@ -11,14 +11,12 @@ import { UpdatePostComponent } from './update-post/update-post.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { ModalReclamationComponent } from './modal-reclamation/modal-reclamation.component';
 import { ResetPasswordRequestComponent } from './reset-password-request/reset-password-request.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 export const Approutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reset-password/:token', component: ResetpasswordComponent },
-
   { path: 'request', component: ResetPasswordRequestComponent },
 
 

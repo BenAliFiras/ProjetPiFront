@@ -63,12 +63,7 @@ export class RegisterComponent implements OnInit {
         // Le cas échéant, effectuez des actions à l'achèvement de la requête
       }
     };
-<<<<<<< HEAD
-
-    this.httpClient.post('http://localhost:9090/api/auth/register', registerDto).subscribe(observer);
-=======
     
     this.httpClient.post('http://localhost:9091/api/auth/register', registerDto).subscribe(observer);
->>>>>>> a49d814c9e7f2addcf67ae764b1abffbdf52acfa
   }
 }
