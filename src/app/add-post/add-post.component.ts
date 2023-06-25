@@ -12,12 +12,13 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class AddPostComponent implements OnInit {
   post: any;
+  idUser: number;
   private adresse!: L.Map;
   selectedImage: string = '';
   @ViewChild('addressInput', { static: true }) mapContainer!: ElementRef;
   constructor(private http: HttpClient) {
     this.post = {
-      link_piecejointe: '',
+      linkpiecejointe: '',
       link: '',
       description: '',
       adresse: '',
@@ -74,16 +75,17 @@ export class AddPostComponent implements OnInit {
   }
 
   addPost() {
-    const url = 'http://localhost:9090/post/add'; // Remplacez par l'URL de votre endpoint backend
-
+     // Remplacez par l'URL de votre endpoint backend
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.get<any>('http://localhost:9091/api/auth/current', { headers }).subscribe({
+    this.http.get<any>('http://localhost:9090/api/auth/current', { headers }).subscribe({
       next: (user: any) => {
+        const url = 'http://localhost:9090/post/add/ '+ user.idUser;
+        console.log(this.post);
         const postData = {
           // Les données du formulaire à envoyer
-          link_piecejointe: this.post.link_piecejointe,
+          linkpiecejointe: this.post.link_piecejointe,
           link: this.post.link,
           description: this.post.description,
           adresse: this.post.adresse,
@@ -95,6 +97,7 @@ export class AddPostComponent implements OnInit {
           () => {
             // La requête POST a réussi
             alert('Post ajouté avec succès');
+            this.post = {};// Réinitialiser les valeurs des champs
           },
           (error) => {
             // Une erreur s'est produite lors de la requête POST
@@ -112,8 +115,8 @@ export class AddPostComponent implements OnInit {
   }
 
   submitForm() {
-      this.addPost();
-    this.post = {}; // Réinitialiser les valeurs des champs
+    console.log(this.post);
+    this.addPost();
   }
 
 }

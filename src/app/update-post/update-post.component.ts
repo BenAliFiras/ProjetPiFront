@@ -15,10 +15,10 @@ export class UpdatePostComponent implements OnInit {
   //post:Post;
   post: Post = new Post();
 
-  constructor(@Inject(PostService)private postService:PostService, private ac: ActivatedRoute, private _router:Router) { }
+  constructor(private postService:PostService, private ac: ActivatedRoute, private _router:Router) { }
 
-  update(){
-    this.postService.updateData(this.post).subscribe(res=>this._router.navigateByUrl("/post/update"));
+  updatePost(){
+    this.postService.updatePost(this.post).subscribe(res=>this._router.navigateByUrl("/post/details"));
   }
   ngOnInit(): void {
     let id= this.ac.snapshot.params['postId'];

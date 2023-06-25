@@ -24,16 +24,21 @@ export class PostService {
     return this.http.get<Post>(url);
   }
 
-  updateData(post: Post): Observable<Post> {
-    // Effectuez votre logique de mise à jour ici
-    // Par exemple, effectuez une requête HTTP PUT/POST vers votre API
-
-    // Exemple de requête HTTP PUT vers une API fictive
-    return this.http.put<Post>('http://localhost:9090/post/update' +post.idPost,post);
+  updatePost(post: Post): Observable<Post> {
+    return this.http.put<Post>('http://localhost:9090/post/update/', post);
   }
 
   addCommentToPost(postId: number, commentaire: any): Observable<any> {
     const url = "http://localhost:9090/post/${postId}/comments"; // Remplacez "/posts/${postId}/comments" par le chemin de votre API pour ajouter un commentaire à un poste
     return this.http.post(url, commentaire);
+  }
+
+  getPostNotArchived(): Observable<Post[]> {
+    const url = ('http://localhost:9090/post/Notarchived');
+    return this.http.get<Post[]>(url);
+  }
+
+  archiverPost(postId: number) {
+    return this.http.delete('http://localhost:9090/post/delete/'+ postId);
   }
 }

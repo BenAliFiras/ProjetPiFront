@@ -36,6 +36,9 @@ import { RegisterComponent } from './register/register.component';
 import { IconsComponent } from './icons/icons.component';
 import { UpdatePostComponent } from './update-post/update-post.component';
 import { PostService } from './post.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -58,6 +61,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RegisterComponent,
     IconsComponent,
     UpdatePostComponent,
+    UserProfileComponent,
+    UsersListComponent,
+    ResetpasswordComponent,
   ],
   imports: [
     CommonModule,

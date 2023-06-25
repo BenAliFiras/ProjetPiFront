@@ -12,6 +12,7 @@ export class UserService {
   constructor(private http:HttpClient) { }
   getUserInfo(): Observable<User> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<User>('http://localhost:9091/api/auth/current', { headers });
+    return this.http.get<User>('http://localhost:9090/api/auth/current', { headers });
   }
 }
+

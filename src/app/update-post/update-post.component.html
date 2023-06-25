@@ -1,10 +1,10 @@
 <form #postForm="ngForm" >
   <div class="form-group">
-    <label for="link_piecejointe">Lien de la pièce jointe:</label>
+    <label for="linkpiecejointe">Lien de la pièce jointe:</label>
     <div class="input-group">
       <div class="input-group-append">
         <label class="btn btn-primary">
-          <input type="file" (change)="onFileSelected($event)" accept="image/*" id="linkPieceJointe" name="linkPieceJointe" [(ngModel)]="post.link_piecejointe" />
+          <input type="file" (change)="onFileSelected($event)" accept="image/*" id="linkpiecejointe" name="linkpiecejointe" [(ngModel)]="post.linkpiecejointe" />
         </label>
       </div>
     </div>
@@ -30,5 +30,5 @@
     <input type="date" class="form-control" id="date" [(ngModel)]="post.date" name="date" required>
   </div>
 
-  <button [disabled]="postForm.invalid" type="submit" class="btn btn-primary">Mettre à jour</button>
+  <button [disabled]="postForm.invalid" (click) = "updatePost()" type="submit" class="btn btn-primary">Mettre à jour</button>
 </form>

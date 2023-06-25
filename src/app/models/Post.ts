@@ -3,15 +3,16 @@ import { User } from "./User";
 
 export class Post{
   idPost: number;
-  link_piecejointe: string;
+  linkpiecejointe: string;
   link: string;
   description: string;
   adresse: string;
   date: string; // Assurez-vous de vérifier le format de date approprié
-  nbr_participant: number;
-  type_logement: string;
-  nbr_likes: string;
-  nbr_signalement: number;
+  nbrParticipant: number;
+  typeLogement: string;
+  nbrLikes: string;
+  nbrSignalement: number;
   commentaires: Commentaire[];
   user: User;
+  status: boolean;
 }

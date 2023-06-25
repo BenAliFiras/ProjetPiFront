@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,  Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-details-post',
@@ -15,7 +16,7 @@ export class DetailsPostComponent implements OnInit {
   postDetails: boolean[] = [];
   postLikes: number[] = [];
 
-  constructor(private http: HttpClient, private router:Router) {
+  constructor(private http: HttpClient, private router:Router, private postService: PostService) {
     //this.postId = 0;
     this.posts = [];
   }
@@ -31,9 +32,10 @@ export class DetailsPostComponent implements OnInit {
   getPostDetails() {
     const url = 'http://localhost:9090/post'; // Remplacez par l'URL de votre endpoint backend
 
-    this.http.get<any>(url).subscribe(
+    this.postService.getPostNotArchived().subscribe(
       response => {
         this.posts = response; // Stocker les détails du post dans la propriété "post"
+        console.log(response);
       },
       error => {
         console.error('Erreur lors de la récupération des détails du post :', error);
@@ -47,11 +49,27 @@ export class DetailsPostComponent implements OnInit {
   }
 
   toggleLike(index: number) {
-    if (this.postLikes[index]) {
-      this.postLikes[index] = 0;
+    const post = this.posts[index];
+    if (post.nbrLikes) {
+      post.nbrLikes = 0;
     } else {
-      this.postLikes[index] = 1;
+      post.nbrLikes = 1;
     }
   }
 
+
+  archiverPost(postId: number) {
+    this.postService.archiverPost(postId).subscribe(
+      () => {
+        console.log('Post archivé avec succès');
+        // Mettre à jour la liste des posts affichés dans votre application frontend
+
+        this.getPostDetails();
+      },
+      (error) => {
+        console.error('Erreur lors de l\'archivage du post :', error);
+        // Gérer les erreurs et afficher des messages d'erreur à l'utilisateur
+      }
+    );
+  }
 }

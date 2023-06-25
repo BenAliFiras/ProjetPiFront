@@ -12,11 +12,11 @@ export const TopSelling: Product[] = [
 
     {
         image: 'assets/images/users/user1.jpg',
-        uname: 'Hanna Gover',
-        gmail: 'hgover@gmail.com',
-        productName: 'Flexy React',
+        uname: 'Ibrahim BARKALLAH',
+        gmail: 'Ibrahim.Barkallah@gmail.com',
+        productName: 'Reclamation pour Eya Trabelsi',
         status: 'danger',
-        weeks: 35,
+        weeks: 13,
         budget: '95K'
     },
     {
