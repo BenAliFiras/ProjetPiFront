@@ -58,7 +58,7 @@ export class AddPostComponent implements OnInit {
     // Assurez-vous de spécifier la bonne URL et la méthode appropriée (POST, PUT, etc.)
 
     // Exemple avec HttpClient :
-    this.http.post<any>('http://localhost:9090/post/add', formData).subscribe(
+    this.http.post<any>('http://localhost:9091/post/add', formData).subscribe(
       response => {
         // Récupérer le lien de l'image depuis la réponse du backend
         const imageUrl = response.image_url;
@@ -79,9 +79,9 @@ export class AddPostComponent implements OnInit {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.get<any>('http://localhost:9090/api/auth/current', { headers }).subscribe({
+    this.http.get<any>('http://localhost:9091/api/auth/current', { headers }).subscribe({
       next: (user: any) => {
-        const url = 'http://localhost:9090/post/add/ '+ user.idUser;
+        const url = 'http://localhost:9091/post/add/ '+ user.idUser;
         console.log(this.post);
         const postData = {
           // Les données du formulaire à envoyer

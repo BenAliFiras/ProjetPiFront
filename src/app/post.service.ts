@@ -16,29 +16,29 @@ export class PostService {
     // Par exemple, effectuez une requête HTTP GET vers votre API
 
     // Exemple de requête HTTP GET vers une API fictive
-      return this.http.get<Post>('http://localhost:9090/post');
+      return this.http.get<Post>('http://localhost:9091/post');
   }
 
   getByIdPost(postId: number): Observable<Post> {
-    const url = ('http://localhost:9090/post/'+ postId);
+    const url = ('http://localhost:9091/post/'+ postId);
     return this.http.get<Post>(url);
   }
 
   updatePost(post: Post): Observable<Post> {
-    return this.http.put<Post>('http://localhost:9090/post/update/', post);
+    return this.http.put<Post>('http://localhost:9091/post/update/', post);
   }
 
   addCommentToPost(postId: number, commentaire: any): Observable<any> {
-    const url = "http://localhost:9090/post/${postId}/comments"; // Remplacez "/posts/${postId}/comments" par le chemin de votre API pour ajouter un commentaire à un poste
+    const url = "http://localhost:9091/post/${postId}/comments"; // Remplacez "/posts/${postId}/comments" par le chemin de votre API pour ajouter un commentaire à un poste
     return this.http.post(url, commentaire);
   }
 
   getPostNotArchived(): Observable<Post[]> {
-    const url = ('http://localhost:9090/post/Notarchived');
+    const url = ('http://localhost:9091/post/Notarchived');
     return this.http.get<Post[]>(url);
   }
 
   archiverPost(postId: number) {
-    return this.http.delete('http://localhost:9090/post/delete/'+ postId);
+    return this.http.delete('http://localhost:9091/post/delete/'+ postId);
   }
 }
