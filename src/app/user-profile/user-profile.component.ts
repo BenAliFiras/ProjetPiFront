@@ -41,6 +41,8 @@ export class UserProfileComponent implements OnInit {
         this.http.get<any>('http://localhost:9091/api/auth/current', { headers }).subscribe({
           next: (user: any) => {
             this.currentUser = user;
+          
+
             console.log('Utilisateur actuel :', this.currentUser);
           },
           error: (error: any) => {
