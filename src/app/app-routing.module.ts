@@ -17,7 +17,6 @@ export const Approutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reset-password/:token', component: ResetpasswordComponent },
-
   { path: 'request', component: ResetPasswordRequestComponent },
 
 
