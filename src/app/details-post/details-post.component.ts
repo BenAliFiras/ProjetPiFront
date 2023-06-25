@@ -30,7 +30,7 @@ export class DetailsPostComponent implements OnInit {
     this.router.navigate(['post/update/:postId']);
   }
   getPostDetails() {
-    const url = 'http://localhost:9090/post'; // Remplacez par l'URL de votre endpoint backend
+    const url = 'http://localhost:9091/post'; // Remplacez par l'URL de votre endpoint backend
 
     this.postService.getPostNotArchived().subscribe(
       response => {

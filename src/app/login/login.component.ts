@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: this.password
     };
 
-    this.http.post('http://localhost:9090/api/auth/login', loginDto).subscribe({
+    this.http.post('http://localhost:9091/api/auth/login', loginDto).subscribe({
       next: (response: any) => {
         const token = response.accessToken;
         console.log(token)
