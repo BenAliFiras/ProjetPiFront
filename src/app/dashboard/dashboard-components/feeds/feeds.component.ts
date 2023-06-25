@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Feeds,Feed } from './feeds-data';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-feeds',
@@ -7,14 +8,23 @@ import { Feeds,Feed } from './feeds-data';
 })
 export class FeedsComponent implements OnInit {
 
-  feeds:Feed[];
+  users: any[];
 
-  constructor() {
+  constructor(private http: HttpClient) { }
 
-    this.feeds = Feeds;
+  ngOnInit() {
+    this.getUsers();
   }
 
-  ngOnInit(): void {
-  }
+  getUsers() {
+    this.http.get<any[]>('http://localhost:9091/user/all').subscribe(
+      (response) => {
+        // Filtrer les utilisateurs dont "désactiver" est false
+        this.users = response.filter(user => user.desactiver === true);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );}
 
 }
