@@ -181,3 +181,20 @@ html, body {
     height:110px;
     margin-top: 50%;
 }
+/* Style de la zone de recherche */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  border-radius: 15px 0 0 15px;
+}
+
+/* Style du bouton de recherche */
+.btn-primary {
+  border-radius: 0 15px 15px 0;
+}
+.btn-rouge {
+  background-color: red;
+}
+
