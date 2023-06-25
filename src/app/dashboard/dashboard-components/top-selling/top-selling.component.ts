@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {Product,TopSelling} from './top-selling-data';
 import { HttpClient } from '@angular/common/http';
+import { Reclamation } from 'src/app/models/Reclamation';
+
+
 
 
 @Component({
@@ -11,28 +14,34 @@ import { HttpClient } from '@angular/common/http';
 export class TopSellingComponent implements OnInit {
 
   topSelling:Product[];
-  claims: any[] = [];
+  claims: Reclamation[];
+
   
   
 
   constructor(private http:HttpClient,private router:Router) { 
 
     this.topSelling=TopSelling;
+ 
+  
   }
   
   
   ngOnInit(): void {
-    this.getClaims
+    this.getClaims();
+
   }
 
   getClaims() {
-    this.http.get<any[]>('http://localhost:8081/reclamation/getall').subscribe(response => {
+    this.http.get<Reclamation[]>('http://localhost:9091/reclamation/getall').subscribe(response => {
+    
       this.claims = response;
+      console.log(response);
     });
   }
 
-  readRec(){
-      this.router.navigate(["dashboard/reclamations"])
+  readRec(claim: Reclamation){
+      this.router.navigate(["dashboard/reclamations"],{ state: { claim }})
   }
 
 }
