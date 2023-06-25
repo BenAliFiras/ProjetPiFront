@@ -18,7 +18,38 @@ export class NavigationComponent implements AfterViewInit {
 
   constructor(private modalService: NgbModal, private router: Router) {
   }
+  ////////////
+  searchResults: any[] = [];
 
+  searchUsers(event: Event): void {
+    event.preventDefault();
+  
+    const searchValue = (document.getElementById('searchName') as HTMLInputElement).value.trim();
+  
+    if (searchValue !== '') {
+      const [name, lastname] = searchValue.split(' ');
+  
+      fetch(`http://localhost:9091/user/${name}/${lastname}`)
+        .then(response => response.json())
+        .then(users => {
+          this.searchResults = users;
+          console.log(users);
+        })
+        .catch(error => {
+          console.error('Une erreur s\'est produite lors de la recherche des utilisateurs:', error);
+        });
+    }
+  }
+  
+  ngAfterViewInit() {
+    // Écoute l'événement de soumission du formulaire de recherche
+    const form = document.getElementById('searchForm') as HTMLFormElement;
+    form.addEventListener('submit', this.searchUsers.bind(this));
+  
+    // ...
+  }
+  
+  
   // This is for Notifications
   notifications: Object[] = [
     {
@@ -112,7 +143,7 @@ export class NavigationComponent implements AfterViewInit {
     icon: 'de'
   }]
 
-  ngAfterViewInit() { }
+
   logout() {
     localStorage.removeItem('token');
     const token =localStorage.getItem('token');

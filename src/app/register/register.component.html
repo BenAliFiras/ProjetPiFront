@@ -111,19 +111,39 @@
               <div class="form-group">
                 <div class="input-group input-group-alternative mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    <span class="input-group-text"><i class="ni ni-image"></i></span>
                   </div>
-                  <input class="form-control" placeholder="Password" type="password" [(ngModel)]="password" name="password" name="first8">
+                  <input class="form-control" placeholder="Image URL" type="url" [(ngModel)]="image" name="image" name="firs">
                 </div>
               </div>
+              
               <div class="form-group">
                 <div class="input-group input-group-alternative mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                   </div>
-                  <input class="form-control" placeholder="Password" type="password" [(ngModel)]="password" name="password" name="first9">
+                  <input class="form-control" placeholder="Password" type="password" [(ngModel)]="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{9,}$" minlength="9" required #passwordInput="ngModel">
+                </div>
+                <div class="alert alert-danger" *ngIf="passwordInput.touched && passwordInput.invalid">
+                  <p *ngIf="passwordInput.errors.required">Password is required.</p>
+                  <p *ngIf="passwordInput.errors.minlength">Password must have at least 9 characters.</p>
+                  <p *ngIf="passwordInput.errors.pattern">Password must be complex and meet the criteria.</p>
                 </div>
               </div>
+              
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Confirm Password" type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required #confirmPasswordInput="ngModel">
+                </div>
+                <div class="alert alert-danger" *ngIf="confirmPasswordInput.touched && confirmPasswordInput.invalid && confirmPassword !== password">
+                  <p *ngIf="confirmPasswordInput.errors.required">Confirm password is required.</p>
+                  <p *ngIf="confirmPassword !== password">Passwords do not match.</p>
+                </div>
+              </div>
+              
   
   
               <div class="text-muted font-italic"><small>Password strength: <span class="text-success font-weight-700">strong</span></small></div>
@@ -138,8 +158,9 @@
                 </div>
               </div>
               <div class="text-center">
-                <button type="submit" class="btn btn-primary mt-4">Create account</button>
+                <button type="submit" class="btn btn-primary mt-4" [disabled]="!(prenom && nom && telephone && age && prenomPere && roleName && adresse && username && image && password )">Create account</button>
               </div>
+              
             </form>
           </div>
         </div>

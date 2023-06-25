@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observer } from 'rxjs';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,8 +19,12 @@ export class RegisterComponent implements OnInit {
   prenomPere: string = '';
   roleName: string = '';
   adresse: string = '';
+  image: string = '';
+  confirmPassword: string = '';
 
-  constructor(private httpClient: HttpClient) { }
+
+
+  constructor(private httpClient: HttpClient,private router: Router) { }
 
   ngOnInit() {
   }
@@ -33,23 +39,31 @@ export class RegisterComponent implements OnInit {
       password: this.password,
       prenomPere: this.prenomPere,
       roleName: this.roleName,
-      adresse: this.adresse
+      adresse: this.adresse,
+      image:this.image
     };
-
+  
     const observer: Observer<any> = {
       next: response => {
         console.log('User registered successfully!');
-        // Traitez la réponse de la requête si nécessaire
+        this.router.navigate(['/login']);
+
+       
       },
       error: error => {
         console.error('Failed to register user:', error);
-        // Traitez l'erreur de la requête si nécessaire
+        Swal.fire({
+          title: 'Erreur!',
+          text: 'Échec de l\'enregistrement de l\'utilisateur.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
       },
       complete: () => {
         // Le cas échéant, effectuez des actions à l'achèvement de la requête
       }
     };
-  
+    
     this.httpClient.post('http://localhost:9091/api/auth/register', registerDto).subscribe(observer);
   }
 }

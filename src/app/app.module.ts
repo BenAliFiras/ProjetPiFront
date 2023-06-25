@@ -38,6 +38,13 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
+import { ResetPasswordRequestComponent } from './reset-password-request/reset-password-request.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { OtherUsersComponent } from './other-users/other-users.component';
+import { ModalReclamationComponent } from './modal-reclamation/modal-reclamation.component';
+
+
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelSpeed: 1,
@@ -61,6 +68,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     UserProfileComponent,
     UsersListComponent,
     ResetpasswordComponent,
+    ResetPasswordRequestComponent,
+    NotFoundComponent,
+    OtherUsersComponent,
+    ModalReclamationComponent
   ],
   imports: [
     CommonModule,
@@ -77,6 +88,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       apiKey:'AIzaSyDC4v9S9NjzctUncKo9nozQnngaCEUqs_o',
       libraries: ['places']
     }),
+    FormsModule,
+    
+
   ],
   providers: [
     {
