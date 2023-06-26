@@ -2,6 +2,7 @@ import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 declare var $: any;
 
@@ -16,7 +17,7 @@ export class NavigationComponent implements AfterViewInit {
 
   public showSearch = false;
 
-  constructor(private modalService: NgbModal, private router: Router) {
+  constructor(private modalService: NgbModal, private router: Router,private http: HttpClient) {
   }
   ////////////
   searchResults: any[] = [];
@@ -48,7 +49,50 @@ export class NavigationComponent implements AfterViewInit {
   
     // ...
   }
+
+    currentUser: any;
+ 
+    
+   /* constructor(private userservice:UserService) { }
   
+    ngOnInit(): void {
+      console.log(localStorage.getItem)
+      this.userservice.getUserInfo().subscribe(
+        (data)=>{
+          this.userInfo=data;
+          console.log(this.userInfo);
+        },
+        (error) =>{
+          console.log(error);
+        }
+      );
+    }*/
+    ngOnInit(): void {
+    
+    const token = localStorage.getItem('token');
+      console.log(token)
+    
+      if (token) {
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+        
+        this.http.get<any>('http://localhost:9091/api/auth/current', { headers }).subscribe({
+          next: (user: any) => {
+            this.currentUser = user;
+          
+
+            console.log('Utilisateur actuel :', this.currentUser);
+          },
+          error: (error: any) => {
+            console.error('Erreur lors de la récupération de l\'utilisateur actuel :', error);
+          },
+          complete: () => {
+            // Logique à exécuter une fois la requête terminée (facultatif)
+          }
+        });
+      } else {
+        // Gérer le cas où le jeton n'est pas présent dans le stockage local
+      }
+    }
   
   // This is for Notifications
   notifications: Object[] = [

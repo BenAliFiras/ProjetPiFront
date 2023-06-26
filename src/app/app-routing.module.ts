@@ -12,6 +12,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { ModalReclamationComponent } from './modal-reclamation/modal-reclamation.component';
 import { ResetPasswordRequestComponent } from './reset-password-request/reset-password-request.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthGuard } from './auth.guard';
 export const Approutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -41,13 +42,13 @@ export const Approutes: Routes = [
         path: 'component',
         loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
       },
-      { path: 'add-post', component:AddPostComponent},
+      { path: 'add-post', component:AddPostComponent,canActivate: [AuthGuard]},
 
-      { path: 'post/details', component: DetailsPostComponent },
+      { path: 'post/details', component: DetailsPostComponent,canActivate: [AuthGuard] },
 
-      { path: 'reservation', component:ReservationPageComponent},
-      { path: 'users', component: UsersListComponent },
-      { path: 'profile', component: UserProfileComponent },
+      { path: 'reservation', component:ReservationPageComponent,canActivate: [AuthGuard]},
+      { path: 'users', component: UsersListComponent,canActivate: [AuthGuard] },
+      { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
 
     ]
   },
