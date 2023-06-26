@@ -34,6 +34,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/devextreme/dist/css/dx.light.css",
               "src/assets/scss/style.scss",
               "src/styles.scss",
               "node_modules/leaflet/dist/leaflet.css"

@@ -15,3 +15,4 @@ export class UserService {
     return this.http.get<User>('http://localhost:9091/api/auth/current', { headers });
   }
 }
+

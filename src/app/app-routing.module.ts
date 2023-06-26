@@ -6,10 +6,11 @@ import { DetailsPostComponent } from './details-post/details-post.component';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { UsersListComponent } from './users-list/users-list.component';
-import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ModalReclamationComponent } from './modal-reclamation/modal-reclamation.component';
+import { UpdatePostComponent } from './update-post/update-post.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ResetPasswordRequestComponent } from './reset-password-request/reset-password-request.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './auth.guard';
@@ -17,7 +18,6 @@ export const Approutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reset-password/:token', component: ResetpasswordComponent },
-
   { path: 'request', component: ResetPasswordRequestComponent },
 
 
@@ -46,9 +46,9 @@ export const Approutes: Routes = [
 
       { path: 'post/details', component: DetailsPostComponent,canActivate: [AuthGuard] },
 
-      { path: 'reservation', component:ReservationPageComponent,canActivate: [AuthGuard]},
-      { path: 'users', component: UsersListComponent,canActivate: [AuthGuard] },
-      { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
+      { path: 'reservation', component:ReservationPageComponent},
+      { path: 'users', component: UsersListComponent },
+      { path: 'profile', component: UserProfileComponent },
 
     ]
   },

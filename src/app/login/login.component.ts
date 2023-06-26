@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
- 
+
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   username: string;
   password: string;
-  rememberMe: boolean; 
+  rememberMe: boolean;
 
 
   login() {
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       username: this.username,
       password: this.password
     };
-  
+
     this.http.post('http://localhost:9091/api/auth/login', loginDto).subscribe({
       next: (response: any) => {
         const token = response.accessToken;
@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         console.error(error);
       }})
     }
-    
-  
+
+
 }
-  

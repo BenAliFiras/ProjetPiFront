@@ -42,13 +42,13 @@ export class RegisterComponent implements OnInit {
       adresse: this.adresse,
       image:this.image
     };
-  
+
     const observer: Observer<any> = {
       next: response => {
         console.log('User registered successfully!');
         this.router.navigate(['/login']);
 
-       
+
       },
       error: error => {
         console.error('Failed to register user:', error);
@@ -63,7 +63,6 @@ export class RegisterComponent implements OnInit {
         // Le cas échéant, effectuez des actions à l'achèvement de la requête
       }
     };
-    
     this.httpClient.post('http://localhost:9091/api/auth/register', registerDto).subscribe(observer);
   }
 }

@@ -25,7 +25,7 @@ export class ReservationPageComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
-    this.appointmentsData = this.getAppointments(1);
+    this.appointmentsData = this.getAppointments(1 );
   }
   getAppointments(id: any): void {
     this.http.get<events[]>("http://localhost:9090/reservation/"+id)
@@ -49,7 +49,7 @@ export class ReservationPageComponent implements OnInit {
       });
   }
   addReservation(){
-    this.http.post("http://localhost:9090/evenement/addAndAssign/1/1", {}).subscribe(
+    this.http.post("http://localhost:9090/evenement/addAndAssign/2/2", {}).subscribe(
       data => {
         // La réservation a été effectuée avec succès
         Swal.fire({
