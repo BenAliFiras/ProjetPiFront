@@ -1,14 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import * as events from 'events';
 import Swal from 'sweetalert2';
 
-
-export class events {
-  text!: string;
-  startDate!: Date;
-  endDate!: Date;
-  idReservation!: any;
-}
 
 @Component({
   selector: 'app-reservation-page',
@@ -28,7 +22,7 @@ export class ReservationPageComponent implements OnInit {
     this.appointmentsData = this.getAppointments(1 );
   }
   getAppointments(id: any): void {
-    this.http.get<events[]>("http://localhost:9090/reservation/"+id)
+    this.http.get<events[]>("http://localhost:9091/reservation/"+id)
       .subscribe((data : events[])=> {
         let renamedData = data.map((appointment: any) => {
           let reservationId = '';
@@ -49,7 +43,7 @@ export class ReservationPageComponent implements OnInit {
       });
   }
   addReservation(){
-    this.http.post("http://localhost:9090/evenement/addAndAssign/2/2", {}).subscribe(
+    this.http.post("http://localhost:9091/evenement/addAndAssign/2/13", {}).subscribe(
       data => {
         // La réservation a été effectuée avec succès
         Swal.fire({
@@ -80,7 +74,7 @@ export class ReservationPageComponent implements OnInit {
   }
   deleteEvent(event: any) {
     let eventId = event.appointmentData.idReservation; // Récupérer l'identifiant de l'événement
-    const url = `http://localhost:9090/reservation/archiverReservation/${eventId}`;
+    const url = `http://localhost:9091/reservation/archiverReservation/${eventId}`;
     Swal.fire({
       title: 'Êtes-vous sûr(e) de vouloir supprimer cet événement?',
       text: "Cette action est irréversible!",

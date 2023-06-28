@@ -13,6 +13,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ResetPasswordRequestComponent } from './reset-password-request/reset-password-request.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ReservationArchivePageComponent } from './reservation-archive-page/reservation-archive-page.component';
 export const Approutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -49,6 +50,8 @@ export const Approutes: Routes = [
       { path: "post/update/:postId", component: UpdatePostComponent },
 
       { path: 'reservation', component:ReservationPageComponent},
+      { path: 'reservationArchive', component:ReservationArchivePageComponent},
+      
       { path: 'users', component: UsersListComponent },
       { path: 'profile', component: UserProfileComponent },
 
