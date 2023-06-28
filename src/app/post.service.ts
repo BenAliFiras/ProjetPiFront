@@ -41,4 +41,5 @@ export class PostService {
   archiverPost(postId: number) {
     return this.http.delete('http://localhost:9091/post/delete/'+ postId);
   }
+
 }
