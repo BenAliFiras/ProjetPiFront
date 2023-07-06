@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-list',
@@ -10,12 +11,14 @@ export class UsersListComponent implements OnInit {
 
   users: any[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
   ngOnInit() {
     this.getUsers();
   }
-
+  viewUser(id: string) {
+    this.router.navigate(['/user', id]);
+  }
   getUsers() {
     this.http.get<any[]>('http://localhost:9091/user/all').subscribe(
       (response) => {

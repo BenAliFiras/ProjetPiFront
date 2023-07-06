@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 //import { error } from 'console';
 
 
@@ -11,7 +12,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router) {}
 
     currentUser: any;
  
@@ -55,6 +56,9 @@ export class UserProfileComponent implements OnInit {
       } else {
         // Gérer le cas où le jeton n'est pas présent dans le stockage local
       }
+    }
+    viewUser(id: string) {
+      this.router.navigate(['/user', id]);
     }
   }
   
