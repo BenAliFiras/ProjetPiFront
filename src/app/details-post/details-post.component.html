@@ -17,9 +17,7 @@
       <a href="{{ post.link }}" target="_blank">{{ post.link }}</a>
       <p>Date: {{ post.date }}</p>*
       <h6>Commentaires:</h6>
-        <div *ngFor="let content of postComments[i]">
-          <p>{{ content }}</p>
-        </div>
+
         <input type="text" id="content" name="content" [(ngModel)]="content" placeholder="Ajouter un commentaire">
         <button class="btn btn-primary" (click)="ajouterCommentaire(post.idPost, content)">Ajouter un commentaire</button>
     </div>
