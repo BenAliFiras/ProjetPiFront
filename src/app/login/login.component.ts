@@ -13,13 +13,19 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
+    const username = localStorage.getItem('username');
+    const password = localStorage.getItem('password');
+    if (username && password) {
+      // Fill in the login form
+      this.username = username;
+      this.password = password;
+    }
   }
   ngOnDestroy() {
   }
 
   username: string;
   password: string;
-  rememberMe: boolean;
 
 
   login() {
@@ -47,6 +53,19 @@ export class LoginComponent implements OnInit, OnDestroy {
         // Traitement de l'erreur en cas d'échec de la connexion
         console.error(error);
       }})
+    }
+    rememberMe(event: Event) {
+      const target = event.target as HTMLInputElement;
+
+      if (target.checked) {
+        // Store the username and password in local storage
+        localStorage.setItem('username', this.username);
+        localStorage.setItem('password', this.password);
+      } else {
+        // Remove the stored credentials from local storage
+        localStorage.removeItem('username');
+        localStorage.removeItem('password');
+      }
     }
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PostService } from '../post.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-details-post',
@@ -58,17 +59,26 @@ export class DetailsPostComponent implements OnInit {
   }
 
   archiverPost(postId: number) {
-    this.postService.archiverPost(postId).subscribe(
-      () => {
-        console.log('Post archivé avec succès');
-        // Mettre à jour la liste des posts affichés dans votre application frontend
-        this.getPostDetails();
-      },
-      (error) => {
-        console.error('Erreur lors de l\'archivage du post :', error);
-        // Gérer les erreurs et afficher des messages d'erreur à l'utilisateur
-      }
-    );
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Confirm archived?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.postService.archiverPost(postId).subscribe(
+          () => {
+            console.log('Post archivé avec succès');
+            // Mettre à jour la liste des posts affichés dans votre application frontend
+            this.getPostDetails();
+          },
+        (error) => {
+          console.error('Erreur lors de l\'archivage du post :', error);
+          // Gérer les erreurs et afficher des messages d'erreur à l'utilisateur
+        })}}
+      );
   }
 
   ajouterCommentaire(postId: number, content: string) {

@@ -17,7 +17,9 @@ export class UsersListComponent implements OnInit {
   ngOnInit() {
     this.getUsers();
   }
-
+  viewUser(id: string) {
+    this.router.navigate(['/user', id]);
+  }
   getUsers() {
     this.http.get<any[]>('http://localhost:9091/user/all').subscribe(
       (response) => {

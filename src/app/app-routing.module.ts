@@ -16,23 +16,25 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ReservationArchivePageComponent } from './reservation-archive-page/reservation-archive-page.component';
 import { AuthGuard } from './auth.guard';
 import { FormreclamationComponent } from './formreclamation/formreclamation.component';
+import { UserComponent } from './user/user.component';
+
 export const Approutes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reset-password/:token', component: ResetpasswordComponent },
   { path: 'request', component: ResetPasswordRequestComponent },
-
-
-
   {
     path: '',
     component: FullComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       },
+
       {
         path: 'dashboard/reclamations', component:ModalReclamationComponent
       },
@@ -57,8 +59,5 @@ export const Approutes: Routes = [
 
     ]
   },
-  {
-    path: '**',
-    component: NotFoundComponent
-  }
+  { path: '**', component: NotFoundComponent }
 ];
