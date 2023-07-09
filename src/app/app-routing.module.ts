@@ -16,51 +16,30 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './auth.guard';
 import { ReservationArchivePageComponent } from './reservation-archive-page/reservation-archive-page.component';
 import { UserComponent } from './user/user.component';
+
 export const Approutes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reset-password/:token', component: ResetpasswordComponent },
   { path: 'request', component: ResetPasswordRequestComponent },
-
-
-
   {
     path: '',
     component: FullComponent,
+    canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-      {
-        path: 'dashboard',
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-      },
-
-      {
-        path: 'dashboard/reclamations', component:ModalReclamationComponent
-      },
-      {
-        path: 'about',
-        loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
-      },
-      {
-        path: 'component',
-        loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
-      },
-      { path: 'add-post', component:AddPostComponent,canActivate: [AuthGuard]},
-
-      { path: 'post/details', component: DetailsPostComponent,canActivate: [AuthGuard] },
-
-      { path: 'reservation', component:ReservationPageComponent,canActivate: [AuthGuard]},
-      { path: 'reservationArchive', component:ReservationArchivePageComponent,canActivate: [AuthGuard]},
-      
-      { path: 'users', component: UsersListComponent,canActivate: [AuthGuard] },
-      { path: 'profile', component: UserProfileComponent,canActivate: [AuthGuard] },
+      { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { path: 'dashboard/reclamations', component: ModalReclamationComponent },
+      { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) },
+      { path: 'component', loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule) },
+      { path: 'add-post', component: AddPostComponent },
+      { path: 'post/details', component: DetailsPostComponent },
+      { path: 'reservation', component: ReservationPageComponent },
+      { path: 'reservationArchive', component: ReservationArchivePageComponent },
+      { path: 'users', component: UsersListComponent },
+      { path: 'profile', component: UserProfileComponent },
       { path: 'user/:id', component: UserComponent },
-
-
     ]
   },
-  {
-    path: '**',
-    component: NotFoundComponent
-  }
+  { path: '**', component: NotFoundComponent }
 ];
