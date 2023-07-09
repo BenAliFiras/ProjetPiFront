@@ -5,6 +5,8 @@ import { Inject } from '@angular/core';
 import * as L from 'leaflet';
 import { HttpHeaders } from '@angular/common/http';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
@@ -74,45 +76,52 @@ export class AddPostComponent implements OnInit {
     );
   }
 
-  addPost() {
-     // Remplacez par l'URL de votre endpoint backend
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.get<any>('http://localhost:9091/api/auth/current', { headers }).subscribe({
-      next: (user: any) => {
-        const url = 'http://localhost:9091/post/add/ '+ user.idUser;
-        console.log(this.post);
-        const postData = {
-          // Les données du formulaire à envoyer
-          linkpiecejointe: this.post.link_piecejointe,
-          link: this.post.link,
-          description: this.post.description,
-          adresse: this.post.adresse,
-          date: this.post.date,
-          idUser: user.idUser // Utilisez directement l'ID de l'utilisateur actuel comme ID du post
-        };
+addPost() {
+  // Remplacez par l'URL de votre endpoint backend
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-        this.http.post(url, postData, { headers }).subscribe(
-          () => {
-            // La requête POST a réussi
-            alert('Post ajouté avec succès');
-            this.post = {};// Réinitialiser les valeurs des champs
-          },
-          (error) => {
-            // Une erreur s'est produite lors de la requête POST
-            console.error('Erreur lors de l\'ajout du post :', error);
-          }
-        );
-      },
-      error: (error: any) => {
-        console.error('Erreur lors de la récupération de l\'utilisateur actuel :', error);
-      },
-      complete: () => {
-        // Logique à exécuter une fois la requête terminée (facultatif)
-      }
-    });
-  }
+  this.http.get<any>('http://localhost:9091/api/auth/current', { headers }).subscribe({
+    next: (user: any) => {
+      const url = 'http://localhost:9091/post/add/ ' + user.idUser;
+      console.log(this.post);
+      const postData = {
+        // Les données du formulaire à envoyer
+        linkpiecejointe: this.post.link_piecejointe,
+        link: this.post.link,
+        description: this.post.description,
+        adresse: this.post.adresse,
+        date: this.post.date,
+        idUser: user.idUser // Utilisez directement l'ID de l'utilisateur actuel comme ID du post
+      };
+
+      this.http.post(url, postData, { headers }).subscribe(
+        () => {
+          // La requête POST a réussi
+          Swal.fire({
+            title: 'Succès!',
+            text: 'Post ajouté avec succès',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
+          this.post = {}; // Réinitialiser les valeurs des champs
+        },
+        (error) => {
+          // Une erreur s'est produite lors de la requête POST
+          console.error('Erreur lors de l\'ajout du post :', error);
+        }
+      );
+    },
+    error: (error: any) => {
+      console.error('Erreur lors de la récupération de l\'utilisateur actuel :', error);
+    },
+    complete: () => {
+      // Logique à exécuter une fois la requête terminée (facultatif)
+    }
+  });
+}
+
 
   submitForm() {
     console.log(this.post);

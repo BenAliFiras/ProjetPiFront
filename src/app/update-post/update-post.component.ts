@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { PostService } from '../post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../models/Post';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-post',
@@ -18,7 +19,28 @@ export class UpdatePostComponent implements OnInit {
   constructor(private postService:PostService, private ac: ActivatedRoute, private _router:Router) { }
 
   updatePost(){
-    this.postService.updatePost(this.post).subscribe(res=>this._router.navigateByUrl("/post/details"));
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Confirm change?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Action à exécuter si le bouton "Oui" est cliqué
+        console.log('Action confirmée');
+        this.postService.updatePost(this.post).subscribe(res => {
+          this._router.navigateByUrl("/post/details");
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Action à exécuter si le bouton "Non" est cliqué ou si l'alerte est fermée
+        console.log('Action annulée');
+        // Ajoutez votre logique ici
+      }
+    });
+
+
   }
   ngOnInit(): void {
     let id= this.ac.snapshot.params['postId'];

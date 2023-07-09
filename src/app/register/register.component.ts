@@ -46,9 +46,14 @@ export class RegisterComponent implements OnInit {
     const observer: Observer<any> = {
       next: response => {
         console.log('User registered successfully!');
-        this.router.navigate(['/login']);
-
-
+        Swal.fire({
+          title: 'Succès!',
+          text: 'L\'utilisateur a été enregistré avec succès.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          this.router.navigate(['/login']);
+        });
       },
       error: error => {
         console.error('Failed to register user:', error);
@@ -64,5 +69,5 @@ export class RegisterComponent implements OnInit {
       }
     };
     this.httpClient.post('http://localhost:9091/api/auth/register', registerDto).subscribe(observer);
-  }
+}
 }

@@ -20,4 +20,9 @@ export class AuthService {
     const body = { newPassword: newPassword };
     return this.http.post(url, body);
   }
+  hasToken(): boolean {
+    const token = localStorage.getItem('token');
+    return !!token; // Renvoie true si le token existe, false sinon
+  }
+
 }

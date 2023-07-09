@@ -30,5 +30,5 @@
     <input type="date" class="form-control" id="date" [(ngModel)]="post.date" name="date" required>
   </div>
 
-  <button [disabled]="postForm.invalid" (click) = "updatePost()" type="submit" class="btn btn-primary">Mettre à jour</button>
+  <button (click) = "updatePost()" type="submit" class="btn btn-success">Mettre à jour</button>
 </form>

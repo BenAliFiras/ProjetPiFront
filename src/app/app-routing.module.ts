@@ -13,7 +13,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ResetPasswordRequestComponent } from './reset-password-request/reset-password-request.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthGuard } from './auth.guard';
 import { ReservationArchivePageComponent } from './reservation-archive-page/reservation-archive-page.component';
+import { UserComponent } from './user/user.component';
 export const Approutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -31,6 +33,7 @@ export const Approutes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       },
+
       {
         path: 'dashboard/reclamations', component:ModalReclamationComponent
       },
@@ -42,17 +45,18 @@ export const Approutes: Routes = [
         path: 'component',
         loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
       },
-      { path: 'add-post', component:AddPostComponent},
+      { path: 'add-post', component:AddPostComponent,canActivate: [AuthGuard]},
 
-      { path: 'post/details', component: DetailsPostComponent },
+      { path: 'post/details', component: DetailsPostComponent,canActivate: [AuthGuard] },
+      { path: 'post/update/:id', component: UpdatePostComponent,canActivate: [AuthGuard] },
 
-      { path: "post/update/:postId", component: UpdatePostComponent },
+      { path: 'reservation', component:ReservationPageComponent,canActivate: [AuthGuard]},
+      { path: 'reservationArchive', component:ReservationArchivePageComponent,canActivate: [AuthGuard]},
 
-      { path: 'reservation', component:ReservationPageComponent},
-      { path: 'reservationArchive', component:ReservationArchivePageComponent},
-      
-      { path: 'users', component: UsersListComponent },
-      { path: 'profile', component: UserProfileComponent },
+      { path: 'users', component: UsersListComponent,canActivate: [AuthGuard] },
+      { path: 'profile', component: UserProfileComponent,canActivate: [AuthGuard] },
+      { path: 'user/:id', component: UserComponent },
+
 
     ]
   },

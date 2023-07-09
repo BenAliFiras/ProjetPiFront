@@ -45,8 +45,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { OtherUsersComponent } from './other-users/other-users.component';
 import { ModalReclamationComponent } from './modal-reclamation/modal-reclamation.component';
 import { ReservationArchivePageComponent } from './reservation-archive-page/reservation-archive-page.component';
-import { SuccessModalComponent } from './success-modal/success-modal.component';
-import { ErrorModalComponent } from './error-modal/error-modal.component';
+import { AdminComponent } from './dashboard/dashboard-components/admin/admin.component';
+import { UserComponent } from './user/user.component';
 
 
 
@@ -79,8 +79,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     OtherUsersComponent,
     ModalReclamationComponent,
     ReservationArchivePageComponent,
-    SuccessModalComponent,
-    ErrorModalComponent
+    UserComponent
+
   ],
   imports: [
     CommonModule,
@@ -98,7 +98,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       libraries: ['places']
     }),
     FormsModule,
-    
+
 
   ],
   providers: [
