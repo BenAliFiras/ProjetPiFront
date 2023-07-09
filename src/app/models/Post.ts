@@ -10,7 +10,8 @@ export class Post{
   date: string; // Assurez-vous de vérifier le format de date approprié
   nbrParticipant: number;
   typeLogement: string;
-  nbrLikes: string;
+  nbrLike: number;
+  liked: boolean;
   nbrSignalement: number;
   commentaires: Commentaire[];
   user: User;

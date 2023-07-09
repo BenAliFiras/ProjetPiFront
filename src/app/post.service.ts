@@ -42,4 +42,14 @@ export class PostService {
     return this.http.delete('http://localhost:9091/post/delete/'+ postId);
   }
 
+  getCommentairesPost(postId: number): Observable<any[]> {
+    const url = ('http://localhost:9091/commentaire/getCommentaires/'+ postId);
+    return this.http.get<any[]>(url);
+  }
+
+  likePost(postId: number, userId: number): Observable<Post> {
+    const url = ('http://localhost:9091/post/like/'+ postId + '/' + userId);
+    return this.http.get<Post>(url);
+  }
+
 }

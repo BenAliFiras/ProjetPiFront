@@ -48,7 +48,7 @@ export const Approutes: Routes = [
       { path: 'add-post', component:AddPostComponent,canActivate: [AuthGuard]},
 
       { path: 'post/details', component: DetailsPostComponent,canActivate: [AuthGuard] },
-
+      { path: 'post/update/:idPost', component: UpdatePostComponent,canActivate: [AuthGuard] },
       { path: 'reservation', component:ReservationPageComponent,canActivate: [AuthGuard]},
       { path: 'reservationArchive', component:ReservationArchivePageComponent,canActivate: [AuthGuard]},
 

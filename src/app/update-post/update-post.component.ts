@@ -43,8 +43,9 @@ export class UpdatePostComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    let id= this.ac.snapshot.params['postId'];
-    this.postService.getByIdPost(id).subscribe(res=> this.post = res);
+    let idPost= this.ac.snapshot.params['idPost'];
+    console.log(idPost);
+    this.postService.getByIdPost(idPost).subscribe(res=> this.post = res);
     //this.ac.paramMap.subscribe(res=>this.postService.getByIdPost(res.get('idPost')).subscribe(
       //  res=> {this.post = res}));
       // Utilisez postId pour charger les données du post à modifier

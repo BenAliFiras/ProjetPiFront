@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PostService } from '../post.service';
 import Swal from 'sweetalert2';
+import { User } from '../models/User';
+import { CommentaireService } from '../commentaire.service';
 
 @Component({
   selector: 'app-details-post',
@@ -16,14 +18,23 @@ export class DetailsPostComponent implements OnInit {
   showButton: boolean = false;
   postDetails: boolean[] = [];
   postLikes: number[] = [];
-  newComment: string = '';
+  content: string = '';
+  commentaires: any[] = [];
+  userid = 0;
 
-  constructor(private http: HttpClient, private router: Router, private postService: PostService) {
+  constructor(private http: HttpClient, private router: Router, private postService: PostService, private commentaireService: CommentaireService) {
     this.posts = [];
   }
 
   ngOnInit(): void {
     this.getPostDetails();
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    this.http.get<any>('http://localhost:9091/api/auth/current', { headers }).subscribe(
+      (user) => {
+        this.userid = user.idUser;
+        console.log(this.userid);
+      });
   }
 
   getupdate() {
@@ -44,18 +55,36 @@ export class DetailsPostComponent implements OnInit {
     );
   }
 
-  toggleDetails(index: number) {
+  toggleDetails(index: number, idPost: number) {
     this.postDetails[index] = !this.postDetails[index];
     this.showButton = true;
+    this.postService.getCommentairesPost(idPost).subscribe(
+      (commentaires) => {
+        this.commentaires = commentaires;
+        console.log('Succès', this.commentaires);
+        console.log(commentaires);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des commentaires :', error);
+      }
+    )
   }
 
-  toggleLike(index: number) {
+  toggleLike(index: number, idPost: number) {
     const post = this.posts[index];
-    if (post.nbrLikes) {
-      post.nbrLikes = 0;
-    } else {
-      post.nbrLikes = 1;
-    }
+
+    let liked = false;
+
+    this.postService.likePost(idPost, this.userid).subscribe(
+      (post) => {
+        liked = post.liked;
+        console.log(post.liked);
+        this.getPostDetails();
+      },
+      (error) => {
+            console.error('Erreur lors de la récupération des commentaires :', error);
+      }
+    )
   }
 
   archiverPost(postId: number) {
@@ -76,7 +105,6 @@ export class DetailsPostComponent implements OnInit {
           },
         (error) => {
           console.error('Erreur lors de l\'archivage du post :', error);
-          // Gérer les erreurs et afficher des messages d'erreur à l'utilisateur
         })}}
       );
   }
@@ -99,21 +127,67 @@ export class DetailsPostComponent implements OnInit {
 
         this.http.post(url, commentaireData, { headers }).subscribe(
           () => {
-            console.log('Commentaire ajouté avec succès');
-            console.log(commentaireData);
-            //this.newComment = '';
-            // Mettre à jour les détails du post ou rafraîchir la liste des commentaires
+            Swal.fire({
+              title: 'Succès!',
+              text: 'Commentaire ajouté avec succès',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
+            this.postService.getCommentairesPost(postId).subscribe(
+              (commentaires) => {
+                this.commentaires = commentaires;
+                console.log('Succès', this.commentaires);
+                console.log(commentaires);
+                this.content = '';
+              },
+              (error) => {
+                console.error('Erreur lors de la récupération des commentaires :', error);
+              }
+            )
+
           },
           (error) => {
             console.error('Erreur lors de l\'ajout du commentaire :', error);
-            // Gérer les erreurs et afficher des messages d'erreur à l'utilisateur
           }
         );
       },
       error: (error) => {
         console.error('Erreur lors de la récupération de l\'utilisateur actuel :', error);
-        // Gérer les erreurs et afficher des messages d'erreur à l'utilisateur
       }
     });
+  }
+
+  archiverCommentaire(commentaireId: number) {
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Confirm archived?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.commentaireService.archiverCommentaire(commentaireId).subscribe(
+          () => {
+            console.log('Commentaire archivé avec succès');
+          // Mettre à jour la liste des commentaires affichés dans votre application frontend
+          if (this.postId) { // Vérifiez que this.postId est défini
+            this.postService.getCommentairesPost(this.postId).subscribe(
+              (commentaires) => {
+                this.commentaires = commentaires;
+              },
+              (error) => {
+                console.error('Erreur lors de la récupération des commentaires :', error);
+              }
+            );
+          }
+        },
+        (error) => {
+          console.error('Erreur lors de l\'archivage du post :', error);
+        })
+        this.postService.getCommentairesPost(this.postId);
+        console.log(this.postService.getCommentairesPost(this.postId));
+      }}
+      );
   }
 }
