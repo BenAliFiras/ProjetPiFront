@@ -13,11 +13,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ResetPasswordRequestComponent } from './reset-password-request/reset-password-request.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-<<<<<<< HEAD
-import { AuthGuard } from './auth.guard';
-=======
 import { ReservationArchivePageComponent } from './reservation-archive-page/reservation-archive-page.component';
->>>>>>> 2b0ee17d4602976b556034564650f30a80e0621d
+import { AuthGuard } from './auth.guard';
+import { FormreclamationComponent } from './formreclamation/formreclamation.component';
 export const Approutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -55,6 +53,7 @@ export const Approutes: Routes = [
       
       { path: 'users', component: UsersListComponent },
       { path: 'profile', component: UserProfileComponent },
+      { path: 'addreclamation', component: FormreclamationComponent, canActivate: [AuthGuard]}
 
     ]
   },

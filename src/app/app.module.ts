@@ -45,6 +45,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { OtherUsersComponent } from './other-users/other-users.component';
 import { ModalReclamationComponent } from './modal-reclamation/modal-reclamation.component';
 import { ReservationArchivePageComponent } from './reservation-archive-page/reservation-archive-page.component';
+import { FormreclamationComponent } from './formreclamation/formreclamation.component';
 
 
 
@@ -76,7 +77,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NotFoundComponent,
     OtherUsersComponent,
     ModalReclamationComponent,
-    ReservationArchivePageComponent
+    ReservationArchivePageComponent,
+    FormreclamationComponent
   ],
   imports: [
     CommonModule,
