@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-users-list',
@@ -11,7 +12,7 @@ export class UsersListComponent implements OnInit {
 
   users: any[];
 
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient,private router:Router) { }
 
   ngOnInit() {
     this.getUsers();
@@ -47,6 +48,10 @@ export class UsersListComponent implements OnInit {
           console.error('Une erreur s\'est produite lors de la recherche des utilisateurs:', error);
         });
     }
+  }
+
+  addRec(user: User): void {
+    this.router.navigate(["addreclamation"], { state: { user } });
   }
 
 }

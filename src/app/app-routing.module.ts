@@ -13,8 +13,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ResetPasswordRequestComponent } from './reset-password-request/reset-password-request.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AuthGuard } from './auth.guard';
 import { ReservationArchivePageComponent } from './reservation-archive-page/reservation-archive-page.component';
+import { AuthGuard } from './auth.guard';
+import { FormreclamationComponent } from './formreclamation/formreclamation.component';
 import { UserComponent } from './user/user.component';
 
 export const Approutes: Routes = [
@@ -49,6 +50,7 @@ export const Approutes: Routes = [
 
       { path: 'post/details', component: DetailsPostComponent,canActivate: [AuthGuard] },
       { path: 'post/update/:idPost', component: UpdatePostComponent,canActivate: [AuthGuard] },
+
       { path: 'reservation', component:ReservationPageComponent,canActivate: [AuthGuard]},
       { path: 'reservationArchive', component:ReservationArchivePageComponent,canActivate: [AuthGuard]},
 

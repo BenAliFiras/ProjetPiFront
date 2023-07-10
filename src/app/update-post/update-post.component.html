@@ -42,5 +42,5 @@
     <input type="date" class="form-control bg-light border border-secondary" id="date" [(ngModel)]="post.date" name="date" #date="ngModel" required>
   </div>
 
-  <button [disabled]="postForm.invalid" type="submit" class="btn btn-success">Ajouter</button>
+  <button (click) = "updatePost()" type="submit" class="btn btn-success">Mettre à jour</button>
 </form>
