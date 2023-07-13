@@ -17,6 +17,8 @@ import { ReservationArchivePageComponent } from './reservation-archive-page/rese
 import { AuthGuard } from './auth.guard';
 import { FormreclamationComponent } from './formreclamation/formreclamation.component';
 import { UserComponent } from './user/user.component';
+import { AddCerntreComponent } from './add-cerntre/add-cerntre.component';
+import { ListCentreComponent } from './list-centre/list-centre.component';
 
 export const Approutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -53,6 +55,8 @@ export const Approutes: Routes = [
 
       { path: 'reservation', component:ReservationPageComponent,canActivate: [AuthGuard]},
       { path: 'reservationArchive', component:ReservationArchivePageComponent,canActivate: [AuthGuard]},
+      { path: 'centre', component:AddCerntreComponent,canActivate: [AuthGuard]},
+      { path: 'listcentre', component:ListCentreComponent,canActivate: [AuthGuard]},
 
       { path: 'users', component: UsersListComponent,canActivate: [AuthGuard] },
       { path: 'profile', component: UserProfileComponent,canActivate: [AuthGuard] },
